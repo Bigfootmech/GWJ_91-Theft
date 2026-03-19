@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dt1y6dplryeu0"]
+
+[ext_resource type="Texture2D" uid="uid://chfuqada1pgxo" path="res://Assets/Topdown_vehicle_sprites_pack/Audi.png" id="1_vh4yq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5ji8"]
+size = Vector2(93, 214.00006)
+
+[node name="Traffic1" type="Node2D" unique_id=1572684583]
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="." unique_id=2102087862]
+position = Vector2(6.1035156e-05, 3.0517578e-05)
+linear_velocity = Vector2(0, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2" unique_id=1580860697]
+position = Vector2(128.00008, -468.99997)
+rotation = 3.1415925
+shape = SubResource("RectangleShape2D_x5ji8")
+
+[node name="Audi" type="Sprite2D" parent="RigidBody2D2" unique_id=488934596]
+position = Vector2(128.00008, -464)
+rotation = -3.1415927
+texture = ExtResource("1_vh4yq")
