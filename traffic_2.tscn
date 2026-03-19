@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b43obabba4wg0"]
+
+[ext_resource type="Texture2D" uid="uid://bcvamvqyyddab" path="res://Assets/Topdown_vehicle_sprites_pack/Mini_truck.png" id="1_5pffg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5ji8"]
+size = Vector2(93, 214.00006)
+
+[node name="Traffic2" type="Node2D" unique_id=1798612917]
+scale = Vector2(1, 0.99846154)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=446271826]
+position = Vector2(64.5, 1313.02)
+rotation = 3.1415925
+scale = Vector2(0.99999994, 1.0015408)
+linear_velocity = Vector2(0, 200)
+
+[node name="MiniTruck" type="Sprite2D" parent="RigidBody2D" unique_id=1061646490]
+position = Vector2(8.5, -9)
+texture = ExtResource("1_5pffg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1209840258]
+position = Vector2(-7.5, -1.0000007)
+shape = SubResource("RectangleShape2D_x5ji8")

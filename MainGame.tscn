@@ -3,23 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://dhlcpfmh7rybw" path="res://Assets/background-1.png" id="1_8qpgq"]
 [ext_resource type="Script" uid="uid://dk8w6dejjnupk" path="res://player_controller.gd" id="1_e3m3f"]
 [ext_resource type="Texture2D" uid="uid://bnhx8ecr1tiyr" path="res://Assets/Topdown_vehicle_sprites_pack/Black_viper.png" id="3_pv6b4"]
-[ext_resource type="Texture2D" uid="uid://chfuqada1pgxo" path="res://Assets/Topdown_vehicle_sprites_pack/Audi.png" id="4_8dnxm"]
-[ext_resource type="Texture2D" uid="uid://bcvamvqyyddab" path="res://Assets/Topdown_vehicle_sprites_pack/Mini_truck.png" id="5_v3hs3"]
+[ext_resource type="Script" uid="uid://ddvfvl1arsn02" path="res://character_body_2d.gd" id="4_pv6b4"]
+[ext_resource type="PackedScene" uid="uid://dt1y6dplryeu0" path="res://Scenes/traffic_1.tscn" id="5_pv6b4"]
+[ext_resource type="PackedScene" uid="uid://b43obabba4wg0" path="res://traffic_2.tscn" id="6_8dnxm"]
+[ext_resource type="Texture2D" uid="uid://ddfq175kq5avf" path="res://Assets/wrecked.png" id="8_x5ji8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqqt8"]
-size = Vector2(89, 216)
+size = Vector2(96, 160.00002)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5ji8"]
-size = Vector2(93, 204)
+[sub_resource type="CircleShape2D" id="CircleShape2D_8dnxm"]
+radius = 48.0
 
 [node name="MainGame" type="Node2D" unique_id=350168283]
 position = Vector2(192, 448)
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=2066980033]
-limit_left = -194
-limit_top = 11
-limit_right = 958
-limit_bottom = 659
 
 [node name="Highway" type="ColorRect" parent="." unique_id=846255079]
 offset_left = -72.0
@@ -48,32 +44,42 @@ position = Vector2(264, -824)
 scale = Vector2(1, 0.99846154)
 texture = ExtResource("1_8qpgq")
 
+[node name="Background5" type="Sprite2D" parent="Highway" unique_id=455174558]
+position = Vector2(264, -1472)
+scale = Vector2(1, 0.99846154)
+texture = ExtResource("1_8qpgq")
+
 [node name="Player" type="Node2D" parent="." unique_id=1471804429]
 script = ExtResource("1_e3m3f")
 
-[node name="Image" type="Sprite2D" parent="Player" unique_id=1497333596]
-position = Vector2(8, 0)
-texture = ExtResource("3_pv6b4")
+[node name="PlayerBody" type="CharacterBody2D" parent="Player" unique_id=450687888]
+script = ExtResource("4_pv6b4")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Player" unique_id=450687888]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CharacterBody2D" unique_id=1970435876]
-position = Vector2(-0.5, -4)
+[node name="RearHitbox" type="CollisionShape2D" parent="Player/PlayerBody" unique_id=1970435876]
+position = Vector2(-16, -8)
+rotation = 1.5707964
 shape = SubResource("RectangleShape2D_bqqt8")
 
-[node name="Audi" type="Sprite2D" parent="." unique_id=174813645]
-position = Vector2(0, -448)
-rotation = -3.1415927
-texture = ExtResource("4_8dnxm")
+[node name="Image" type="Sprite2D" parent="Player/PlayerBody" unique_id=1497333596]
+position = Vector2(8, 0)
+rotation = 1.5707964
+texture = ExtResource("3_pv6b4")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1584591627]
-position = Vector2(256.5, -305)
-rotation = 3.1415925
+[node name="PlayerCamera" type="Camera2D" parent="Player/PlayerBody" unique_id=2066980033]
+limit_left = -190
+limit_top = -12000000
+limit_right = 962
+limit_bottom = 11000000
 
-[node name="MiniTruck" type="Sprite2D" parent="RigidBody2D" unique_id=537876819]
-position = Vector2(8.5, -9)
-texture = ExtResource("5_v3hs3")
+[node name="FrontHitbox" type="CollisionShape2D" parent="Player/PlayerBody" unique_id=608078229]
+position = Vector2(72, -8)
+shape = SubResource("CircleShape2D_8dnxm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=382036003]
-position = Vector2(-7.5, -1.0000007)
-shape = SubResource("RectangleShape2D_x5ji8")
+[node name="Traffic1" parent="." unique_id=1572684583 instance=ExtResource("5_pv6b4")]
+
+[node name="Traffic2" parent="." unique_id=1798612917 instance=ExtResource("6_8dnxm")]
+position = Vector2(192, -1616)
+
+[node name="Wrecked" type="Sprite2D" parent="." unique_id=768488778]
+position = Vector2(-816, 16)
+texture = ExtResource("8_x5ji8")
